@@ -7,7 +7,7 @@ const totalPriceElement = document.getElementById('totalPrice');
 const clearAllButton = document.getElementById('clearAllButton');
 const backButton = document.getElementById('backButton');
 
-// Mahsulotlarni ko'rsatish
+
 let cart = [];
 fetch("https://fakestoreapi.com/products?limit=10")
   .then(res => res.json())
@@ -31,7 +31,6 @@ function showProducts(products) {
     cards.appendChild(card);
   });
 
-  // Buy tugmasiga event listener qo'shish
   const buyButtons = document.querySelectorAll('.buyButton');
   buyButtons.forEach(button => {
     button.addEventListener('click', (event) => {
@@ -42,19 +41,16 @@ function showProducts(products) {
     });
   });
 }
-
-// Mahsulotni korzinkaga qo'shish
 function addToCart(id, title, price) {
   const product = { id, title, price };
   cart.push(product);
   updateCart();
 }
 
-// Korzinkani yangilash
 function updateCart() {
   cartCount.innerText = cart.length;
   
-  // Korzinkadagi mahsulotlarni ko'rsatish
+
   cartItems.innerHTML = '';
   let totalPrice = 0;
   cart.forEach(item => {
@@ -67,19 +63,17 @@ function updateCart() {
   totalPriceElement.innerText = `Total: ${totalPrice.toFixed(2)}$`;
 }
 
-// Clear All tugmasiga event listener qo'shish
 clearAllButton.addEventListener('click', () => {
-  cart = []; // Korzinkani tozalash
+  cart = []; 
   updateCart();
   alert('All items have been removed from the cart!');
 });
 
-// Korzinkaga o'tish
+
 cartIcon.addEventListener('click', () => {
   cartPage.style.display = 'block';
 });
 
-// Back to Products tugmasiga event listener qo'shish
 backButton.addEventListener('click', () => {
   cartPage.style.display = 'none';
 });
